@@ -1,4 +1,5 @@
-# cgtcalc: UK capital gains tax calculator
+# cgtcalc: Greek capital gains tax calculator
+## Forked from: [https://github.com/mattjgalloway/cgtcalc](https://github.com/mattjgalloway/cgtcalc)
 
 ![Build status](https://github.com/mattjgalloway/cgtcalc/actions/workflows/swift.yml/badge.svg)
 [![codecov](https://codecov.io/gh/mattjgalloway/cgtcalc/branch/master/graph/badge.svg)](https://codecov.io/gh/mattjgalloway/cgtcalc)

@@ -20,12 +20,15 @@ struct TaxYear {
     let calendar = Calendar(identifier: .gregorian)
     let components = calendar.dateComponents([.year, .month, .day], from: containingDate)
     var year = components.year!
-    if components.month! > 4 {
+    if components.month! >= 1 {
       year += 1
     }
-    if components.month! == 4, components.day! > 5 {
-      year += 1
-    }
+    // if components.month! > 4 {
+    //   year += 1
+    // }
+    // if components.month! == 4, components.day! > 5 {
+    //   year += 1
+    // }
     self.init(yearEnding: year)
   }
 }
@@ -62,16 +65,17 @@ extension TaxYear {
   }
 
   static let rates: [TaxYear: Rates] = [
-    TaxYear(yearEnding: 2014): Rates(exemption: 10900, basicRate: 18, higherRate: 28),
-    TaxYear(yearEnding: 2015): Rates(exemption: 11000, basicRate: 18, higherRate: 28),
-    TaxYear(yearEnding: 2016): Rates(exemption: 11100, basicRate: 18, higherRate: 28),
-    TaxYear(yearEnding: 2017): Rates(exemption: 11100, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2018): Rates(exemption: 11300, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2019): Rates(exemption: 11700, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2020): Rates(exemption: 12000, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2021): Rates(exemption: 12300, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2022): Rates(exemption: 12300, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2023): Rates(exemption: 12300, basicRate: 10, higherRate: 20),
-    TaxYear(yearEnding: 2024): Rates(exemption: 6000, basicRate: 10, higherRate: 20)
+    TaxYear(yearEnding: 2014): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2015): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2016): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2017): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2018): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2019): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2020): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2021): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2022): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2023): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2024): Rates(exemption: 0, basicRate: 15, higherRate: 0),
+    TaxYear(yearEnding: 2025): Rates(exemption: 0, basicRate: 15, higherRate: 0),
   ]
 }

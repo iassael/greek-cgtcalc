@@ -44,7 +44,7 @@ public class TextPresenter: Presenter {
   }
 
   private func formattedCurrency(_ amount: Decimal) -> String {
-    return "£\(amount.rounded(to: 2).string)"
+    return "€\(amount.rounded(to: 2).string)"
   }
 
   private func summaryTable() -> String {
@@ -58,7 +58,6 @@ public class TextPresenter: Presenter {
           self.formattedCurrency(summary.carryForwardLoss),
           self.formattedCurrency(summary.taxableGain),
           self.formattedCurrency(summary.basicRateTax),
-          self.formattedCurrency(summary.higherRateTax)
         ]
         output.append(row)
       }
@@ -70,8 +69,7 @@ public class TextPresenter: Presenter {
       "Exemption",
       "Loss carry",
       "Taxable gain",
-      "Tax (basic)",
-      "Tax (higher)"
+      "Tax (15%)"
     ]
     let initialMaxWidths = headerRow.map { $0.count }
     let maxWidths = rows.reduce(into: initialMaxWidths) { result, row in
@@ -144,7 +142,7 @@ public class TextPresenter: Presenter {
         result += "SOLD "
       }
       result +=
-        "\(transaction.amount) of \(transaction.asset) at £\(transaction.price) with £\(transaction.expenses) expenses\n"
+        "\(transaction.amount) of \(transaction.asset) at €\(transaction.price) with €\(transaction.expenses) expenses\n"
     }
   }
 
@@ -175,23 +173,23 @@ extension TextPresenter {
     switch disposalMatch.kind {
     case .SameDay(let acquisition):
       var output =
-        "SAME DAY: \(acquisition.amount) bought on \(dateFormatter.string(from: acquisition.date)) at £\(acquisition.price)"
+        "SAME DAY: \(acquisition.amount) bought on \(dateFormatter.string(from: acquisition.date)) at €\(acquisition.price)"
       if !acquisition.offset.isZero {
-        output += " with offset of £\(acquisition.offset)"
+        output += " with offset of €\(acquisition.offset)"
       }
       return output
     case .BedAndBreakfast(let acquisition):
       var output =
-        "BED & BREAKFAST: \(acquisition.amount) bought on \(dateFormatter.string(from: acquisition.date)) at £\(acquisition.price)"
+        "BED & BREAKFAST: \(acquisition.amount) bought on \(dateFormatter.string(from: acquisition.date)) at €\(acquisition.price)"
       if !acquisition.offset.isZero {
-        output += " with offset of £\(acquisition.offset)"
+        output += " with offset of €\(acquisition.offset)"
       }
       if disposalMatch.restructureMultiplier != Decimal(1) {
         output += " with restructure multiplier \(disposalMatch.restructureMultiplier)"
       }
       return output
     case .Section104(let amountAtDisposal, let costBasis):
-      return "SECTION 104: \(amountAtDisposal) at cost basis of £\(costBasis.rounded(to: 5).string)"
+      return "SECTION 104: \(amountAtDisposal) at cost basis of €\(costBasis.rounded(to: 5).string)"
     }
   }
 
